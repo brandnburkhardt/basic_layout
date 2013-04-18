@@ -2,3 +2,29 @@
 
 <%= render 'static_pages/shared/main_headline' %>
 
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span8">
+      <%= render 'static_pages/shared/recent_articles' %>
+    </div>
+
+    <div class="span4">
+      <div class="hero-unit2">
+        <h3>Article Categories</h3>
+
+        <ul>
+          <% Tag.all.each do |t| %>
+          <li><%= link_to t.name, tag_path(t.name) %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="hero-unit2">
+        <h3>Some Other Content Here</h3>
+
+        <p>Maybe something like Twitter integration to display the company's last "x" tweets?</p>
+      </div>
+    </div>
+  </div>
+</div>
+

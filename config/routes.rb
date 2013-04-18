@@ -8,6 +8,8 @@ Layout::Application.routes.draw do
   match '/contact', :to => 'static_pages#contact'
   match '/home2',   :to => 'static_pages#home2'
 
+  get 'tags/:tag', :to => 'articles#index', as: :tag
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

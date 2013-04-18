@@ -9,7 +9,10 @@
   <%= f.text_area :content, class: "span8" %>
 
   <%= f.label :author %>
-  <%= f.text_field :author, class: "span8" %></br>
+  <%= f.text_field :author, class: "span8" %>
+
+  <%= f.label :tag_list, "Article Categories (separated by commmas)" %>
+  <%= f.text_field :tag_list, class: "span8" %></br>
 
   <%= f.submit "Post Article", class: "btn btn-primary" %>
 <% end %>

@@ -1,29 +1,26 @@
 <% provide(:title, "Articles") %>
 
-<h1>Articles</h1>
+<div class="row fluid">
+  <h1>
+    Articles <span class="pull-right right"><%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" %></span>
+  </h1>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Author</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row fluid">
+  <% @articles.each do |article| %>
+    <div class="span2">
+      <%= link_to image_tag("article"+" #{article.id}.jpg", alt: article.title), article %>
+    </div>
+    <div class="span9">
+      <h2><%= link_to article.title, article %><small class="pull-right right">created on <%= article.created_at %></small></h2>
+      <p><%= raw(truncate(article.content, :length => 300, :omission => (link_to "...(continued)", article))) %></p>
 
-<% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.content %></td>
-    <td><%= article.author %></td>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <span>Categories: <%= raw article.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></span>
 
-<br />
+    <span class="pull-right right"><%= link_to 'Edit', edit_article_path(article) %> | <%=link_to 'Destroy', article, method: :delete, data: { confirm: 'Are You Sure?' } %></span>
+    </div>
+  <% end %>
+</div>
+</br>
 
-<%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" %>
+<span class="pull-right right"><%= link_to 'See All Articles', articles_path, class: "btn btn-primary" %></span>
